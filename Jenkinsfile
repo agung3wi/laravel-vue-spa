@@ -5,7 +5,7 @@ node {
         sh 'npm run build'
     }
 
-    docker.image('prooph/composer:7.4').inside('-u root') {
+    docker.image('shippingdocker/php-composer:7.4').inside('-u root') {
         sh 'composer install'
     }
     
