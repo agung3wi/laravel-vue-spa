@@ -18,21 +18,21 @@ node {
         }
     }
 
-    docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
-        sshagent (credentials: ['agung']) {
-            sh 'mkdir -p ~/.ssh'
-            sh 'ssh-keyscan -H "staging-env.agung3wi.xyz" > ~/.ssh/known_hosts'
-            sh "ssh ubuntu@staging-env.agung3wi.xyz 'cd ~/staging-env.agung3wi.xyz && vendor/bin/phpunit'"
-        }
-    }
+    // docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
+    //     sshagent (credentials: ['agung']) {
+    //         sh 'mkdir -p ~/.ssh'
+    //         sh 'ssh-keyscan -H "staging-env.agung3wi.xyz" > ~/.ssh/known_hosts'
+    //         sh "ssh ubuntu@staging-env.agung3wi.xyz 'cd ~/staging-env.agung3wi.xyz && vendor/bin/phpunit'"
+    //     }
+    // }
     
-    docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
-        sshagent (credentials: ['agung']) {
-            sh 'mkdir -p ~/.ssh'
-            sh 'ssh-keyscan -H "prod-env.agung3wi.xyz" > ~/.ssh/known_hosts'
-            sh "rsync -rav --delete ./ ubuntu@prod-env.agung3wi.xyz:/home/ubuntu/prod-env.agung3wi.xyz/ --exclude=node_modules --exclude=.git --exclude=.env --exclude=storage"
-            sh "ssh ubuntu@prod-env.agung3wi.xyz 'cd ~/prod-env.agung3wi.xyz && php artisan migrate'"
-        }
-    }
+    // docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
+    //     sshagent (credentials: ['agung']) {
+    //         sh 'mkdir -p ~/.ssh'
+    //         sh 'ssh-keyscan -H "prod-env.agung3wi.xyz" > ~/.ssh/known_hosts'
+    //         sh "rsync -rav --delete ./ ubuntu@prod-env.agung3wi.xyz:/home/ubuntu/prod-env.agung3wi.xyz/ --exclude=node_modules --exclude=.git --exclude=.env --exclude=storage"
+    //         sh "ssh ubuntu@prod-env.agung3wi.xyz 'cd ~/prod-env.agung3wi.xyz && php artisan migrate'"
+    //     }
+    // }
     
 }
