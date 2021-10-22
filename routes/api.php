@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("hello", function() {
     return [
-        "message" => "hello"
+        "message" => "hello v2"
     ];
 });
 
