@@ -13,7 +13,7 @@ node {
         sshagent (credentials: ['agung']) {
             sh 'mkdir -p ~/.ssh'
             sh 'ssh-keyscan -H "staging-env.agung3wi.xyz" > ~/.ssh/known_hosts'
-            sh "rsync -rav --delete ./ ubuntu@staging-env.agung3wi.xyz:/home/ubuntu/staging-env.agung3wi.xyz/"
+            sh "rsync -rav --delete ./ ubuntu@staging-env.agung3wi.xyz:/home/ubuntu/staging-env.agung3wi.xyz/ --exclude=node_modules --exclude=.git --exclude=.env --exclude=storage"
             sh "ssh ubuntu@staging-env.agung3wi.xyz 'cd ~/staging-env.agung3wi.xyz && php artisan migrate'"
         }
     }
@@ -30,7 +30,7 @@ node {
         sshagent (credentials: ['agung']) {
             sh 'mkdir -p ~/.ssh'
             sh 'ssh-keyscan -H "prod-env.agung3wi.xyz" > ~/.ssh/known_hosts'
-            sh "rsync -rav --delete ./ ubuntu@prod-env.agung3wi.xyz:/home/ubuntu/prod-env.agung3wi.xyz/"
+            sh "rsync -rav --delete ./ ubuntu@prod-env.agung3wi.xyz:/home/ubuntu/prod-env.agung3wi.xyz/ --exclude=node_modules --exclude=.git --exclude=.env --exclude=storage"
             sh "ssh ubuntu@prod-env.agung3wi.xyz 'cd ~/prod-env.agung3wi.xyz && php artisan migrate'"
         }
     }
