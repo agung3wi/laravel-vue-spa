@@ -22,7 +22,7 @@ node {
         sshagent (credentials: ['agung']) {
             sh 'mkdir -p ~/.ssh'
             sh 'ssh-keyscan -H "staging-env.agung3wi.xyz" > ~/.ssh/known_hosts'
-            sh "ssh ubuntu@staging-env.agung3wi.xyz 'cd ~/staging-env.agung3wi.xyz && /vendor/bin/phpunit'"
+            sh "ssh ubuntu@staging-env.agung3wi.xyz 'cd ~/staging-env.agung3wi.xyz && vendor/bin/phpunit'"
         }
     }
     
