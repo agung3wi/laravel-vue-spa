@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("hello", function() {
+    return [
+        "message" => "hello"
+    ];
+});
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);
 
